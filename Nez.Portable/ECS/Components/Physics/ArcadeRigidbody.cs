@@ -47,6 +47,8 @@ namespace Nez
 			set => SetGlue(value);
 		}
 
+		public bool IgnoreCollisions { get; set; }
+
 		/// <summary>
 		/// if true, Physics.gravity will be taken into account each frame
 		/// </summary>
@@ -173,6 +175,9 @@ namespace Nez
 
 			Entity.Transform.Position += Velocity * Time.DeltaTime;
 
+			if (IgnoreCollisions)
+				return;
+
 			CollisionResult collisionResult;
 
 			// fetch anything that we might collide with at our new position
@@ -247,7 +252,7 @@ namespace Nez
 			var totalInverseMass = _inverseMass + other._inverseMass;
 			var ourResponseFraction = _inverseMass / totalInverseMass;
 			var otherResponseFraction = other._inverseMass / totalInverseMass;
-
+			
 			Velocity += relativeVelocity * ourResponseFraction;
 			other.Velocity -= relativeVelocity * otherResponseFraction;
 		}

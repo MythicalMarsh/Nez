@@ -75,21 +75,22 @@ namespace Nez.Systems
 		/// </summary>
 		public Texture2D LoadTexture(string name, bool premultiplyAlpha = false)
 		{
+			string formatted = Core.Content.RootDirectory + "/" + name;
 			// no file extension. Assumed to be an xnb so let ContentManager load it
 			if (string.IsNullOrEmpty(Path.GetExtension(name)))
-				return Load<Texture2D>(name);
+				return Load<Texture2D>(formatted);
 
-			if (LoadedAssets.TryGetValue(name, out var asset))
+			if (LoadedAssets.TryGetValue(formatted, out var asset))
 			{
 				if (asset is Texture2D tex)
 					return tex;
 			}
 
-			using (var stream = Path.IsPathRooted(name) ? File.OpenRead(name) : TitleContainer.OpenStream(name))
+			using (var stream = Path.IsPathRooted(formatted) ? File.OpenRead(formatted) : TitleContainer.OpenStream(formatted))
 			{
 				var texture = premultiplyAlpha ? TextureUtils.TextureFromStreamPreMultiplied(stream) : Texture2D.FromStream(Core.GraphicsDevice, stream);
-				texture.Name = name;
-				LoadedAssets[name] = texture;
+				texture.Name = formatted;
+				LoadedAssets[formatted] = texture;
 				DisposableAssets.Add(texture);
 
 				return texture;
@@ -129,15 +130,16 @@ namespace Nez.Systems
 		/// </summary>
 		public TmxMap LoadTiledMap(string name)
 		{
-			if (LoadedAssets.TryGetValue(name, out var asset))
+			string formatted = Core.Content.RootDirectory + "/" + name;
+			if (LoadedAssets.TryGetValue(formatted, out var asset))
 			{
 				if (asset is TmxMap map)
 					return map;
 			}
 
-			var tiledMap = new TmxMap().LoadTmxMap(name);
+			var tiledMap = new TmxMap().LoadTmxMap(formatted);
 
-			LoadedAssets[name] = tiledMap;
+			LoadedAssets[formatted] = tiledMap;
 			DisposableAssets.Add(tiledMap);
 
 			return tiledMap;

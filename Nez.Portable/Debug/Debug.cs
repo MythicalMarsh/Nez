@@ -21,22 +21,29 @@ namespace Nez
 		[DebuggerHidden]
 		static void Log(LogType type, string format, params object[] args)
 		{
+			var calleeName = new StackFrame(2, false).GetMethod().DeclaringType.Name;
+			var lineNumber = new StackFrame(2, true).GetFileLineNumber();
 			switch (type)
 			{
 				case LogType.Error:
-					System.Diagnostics.Debug.WriteLine(type.ToString() + ": " + format, args);
+					System.Diagnostics.Debug.WriteLine($"[{calleeName}:{lineNumber}] {type.ToString()} : {format}",
+						args);
 					break;
 				case LogType.Warn:
-					System.Diagnostics.Debug.WriteLine(type.ToString() + ": " + format, args);
+					System.Diagnostics.Debug.WriteLine($"[{calleeName}:{lineNumber}] {type.ToString()} : {format}",
+						args);
 					break;
 				case LogType.Log:
-					System.Diagnostics.Debug.WriteLine(type.ToString() + ": " + format, args);
+					System.Diagnostics.Debug.WriteLine($"[{calleeName}:{lineNumber}] {type.ToString()} : {format}",
+						args);
 					break;
 				case LogType.Info:
-					System.Diagnostics.Debug.WriteLine(type.ToString() + ": " + format, args);
+					System.Diagnostics.Debug.WriteLine($"[{calleeName}:{lineNumber}] {type.ToString()} : {format}",
+						args);
 					break;
 				case LogType.Trace:
-					System.Diagnostics.Debug.WriteLine(type.ToString() + ": " + format, args);
+					System.Diagnostics.Debug.WriteLine($"[{calleeName}:{lineNumber}] {type.ToString()} : {format}",
+						args);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

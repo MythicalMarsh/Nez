@@ -333,6 +333,11 @@ namespace Nez
 		{
 		}
 
+		public virtual void PreUnload()
+		{
+
+		}
+
 		/// <summary>
 		/// override this in Scene subclasses and do any unloading necessary here. this is called when Core removes this scene from the active slot.
 		/// </summary>
@@ -364,6 +369,8 @@ namespace Nez
 		internal void End()
 		{
 			_didSceneBegin = false;
+
+			PreUnload();
 
 			// we kill Renderers and PostProcessors first since they rely on Entities
 			for (var i = 0; i < _renderers.Length; i++)

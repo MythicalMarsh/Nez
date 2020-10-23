@@ -22,6 +22,11 @@ namespace Nez
 		OrientationChanged,
 
 		/// <summary>
+		/// fired whenever the localization has been changed.
+		/// </summary>
+		LocalizationChanged,
+
+		/// <summary>
 		/// fired when the game is exiting
 		/// </summary>
 		Exiting

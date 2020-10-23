@@ -532,7 +532,6 @@ namespace Nez
 			public override bool IsReleased => Input.LeftMouseButtonReleased;
 		}
 
-
 		public class MouseRightButton : Node
 		{
 			public override bool IsDown => Input.RightMouseButtonDown;
@@ -570,6 +569,24 @@ namespace Nez
 			public override bool IsPressed => Input.SecondExtendedMouseButtonPressed;
 
 			public override bool IsReleased => Input.SecondExtendedMouseButtonReleased;
+		}
+
+		public class MouseUpScroll : Node
+		{
+			public override bool IsDown => false;
+
+			public override bool IsPressed => Input.MouseWheelDelta > 0;
+
+			public override bool IsReleased => Input.MouseWheelDelta == 0;
+		}
+
+		public class MouseDownScroll : Node
+		{
+			public override bool IsDown => false;
+
+			public override bool IsPressed => Input.MouseWheelDelta < 0;
+
+			public override bool IsReleased => Input.MouseWheelDelta == 0;
 		}
 
 		#endregion

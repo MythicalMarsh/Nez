@@ -8,6 +8,10 @@ namespace Nez.UI
 	{
 		public event Action<bool> OnChanged;
 		public event Action<Button> OnClicked;
+		public event Action<Button> OnEntered;
+		public event Action<Button> OnExited;
+		public event Action<Button> OnReleased;
+
 
 		public override float PreferredWidth
 		{
@@ -96,12 +100,14 @@ namespace Nez.UI
 		void IInputListener.OnMouseEnter()
 		{
 			_mouseOver = true;
+			OnEntered?.Invoke(this);
 		}
 
 
 		void IInputListener.OnMouseExit()
 		{
 			_mouseOver = _mouseDown = false;
+			OnExited?.Invoke(this);
 		}
 
 
@@ -111,6 +117,7 @@ namespace Nez.UI
 				return false;
 
 			_mouseDown = true;
+			OnClicked?.Invoke(this);
 			return true;
 		}
 
@@ -132,8 +139,7 @@ namespace Nez.UI
 
 			SetChecked(!_isChecked, true);
 
-			if (OnClicked != null)
-				OnClicked(this);
+			OnReleased?.Invoke(this);
 		}
 
 

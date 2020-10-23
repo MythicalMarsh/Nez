@@ -296,5 +296,14 @@ namespace Nez
 		{
 			Transform(sourceArray, 0, ref matrix, destinationArray, 0, sourceArray.Length);
 		}
+
+		public static Vector2 North		{ get; private set; } = new Vector2(0, -1);
+		public static Vector2 South		{ get; private set; } = new Vector2(0, 1);
+		public static Vector2 West		{ get; private set; } = new Vector2(-1, 0);
+		public static Vector2 East		{ get; private set; } = new Vector2(1, 0);
+		public static Vector2 NortWest  { get; private set; } = new Vector2(-1, -1);
+		public static Vector2 NorthEast { get; private set; } = new Vector2(1, -1);
+		public static Vector2 SouthWest { get; private set; } = new Vector2(-1, 1);
+		public static Vector2 SouthEast { get; private set; } = new Vector2(1, 1);
 	}
 }
