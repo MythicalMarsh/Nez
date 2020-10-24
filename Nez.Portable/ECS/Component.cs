@@ -77,6 +77,12 @@ namespace Nez
 		public virtual void OnRemovedFromEntity()
 		{ }
 
+		public virtual void OnAttachedToScene()
+		{ }
+
+		public virtual void OnDetachedFromScene()
+		{ }
+
 		/// <summary>
 		/// called when the entity's position changes. This allows components to be aware that they have moved due to the parent
 		/// entity moving.

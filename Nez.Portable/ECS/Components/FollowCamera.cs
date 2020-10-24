@@ -20,7 +20,7 @@ namespace Nez
 		/// <summary>
 		/// how fast the camera closes the distance to the target position
 		/// </summary>
-		public float FollowLerp = 0.1f;
+		public float FollowLerp = 1f;
 
 		/// <summary>
 		/// when in CameraWindow mode the width/height is used as a bounding box to allow movement within it without moving the camera.
@@ -87,8 +87,10 @@ namespace Nez
 		{
 			// translate the deadzone to be in world space
 			var halfScreen = Camera.Bounds.Size * 0.5f;
-			_worldSpaceDeadzone.X = Camera.Position.X - halfScreen.X * Camera.RawZoom + Deadzone.X + FocusOffset.X;
-			_worldSpaceDeadzone.Y = Camera.Position.Y - halfScreen.Y * Camera.RawZoom + Deadzone.Y + FocusOffset.Y;
+			_worldSpaceDeadzone.X = Camera.Position.X - halfScreen.X + Deadzone.X + FocusOffset.X;
+			_worldSpaceDeadzone.Y = Camera.Position.Y - halfScreen.Y + Deadzone.Y + FocusOffset.Y;
+			//_worldSpaceDeadzone.X = Camera.Position.X - halfScreen.X * Camera.RawZoom + Deadzone.X + FocusOffset.X;
+			//_worldSpaceDeadzone.Y = Camera.Position.Y - halfScreen.Y * Camera.RawZoom + Deadzone.Y + FocusOffset.Y;
 			_worldSpaceDeadzone.Width = Deadzone.Width;
 			_worldSpaceDeadzone.Height = Deadzone.Height;
 

@@ -97,6 +97,7 @@ namespace Nez
 			for (var i = 0; i < _components.Length; i++)
 			{
 				var component = _components.Buffer[i];
+				component.OnDetachedFromScene();
 
 				// deal with renderLayer list if necessary
 				if (component is RenderableComponent)
@@ -113,6 +114,7 @@ namespace Nez
 			for (var i = 0; i < _components.Length; i++)
 			{
 				var component = _components.Buffer[i];
+				component.OnAttachedToScene();
 				if (component is RenderableComponent)
 					_entity.Scene.RenderableComponents.Add(component as RenderableComponent);
 
