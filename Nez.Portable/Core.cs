@@ -132,7 +132,7 @@ namespace Nez
 		}
 
 
-		public Core(int width = 1280, int height = 720, bool isFullScreen = false, string windowTitle = "Nez", string contentDirectory = "Content")
+		public Core(int width = 1280, int height = 720, bool isFullScreen = false, string windowTitle = "MythicalMarsh", string contentDirectory = "Content")
 		{
 #if DEBUG
 			_windowTitle = windowTitle;

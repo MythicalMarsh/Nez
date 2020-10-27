@@ -22,7 +22,7 @@ namespace Nez
 		/// <summary>
 		/// cell size used when reset is called and a new SpatialHash is created
 		/// </summary>
-		public static int SpatialHashCellSize = 100;
+		public static int SpatialHashCellSize = 48;
 
 		/// <summary>
 		/// Do raycasts detect Colliders configured as triggers?

@@ -16,8 +16,8 @@ namespace Nez.Particles
 		/// </summary>
 		public bool SimulateInWorldSpace = true;
 
-		public Blend BlendFuncSource;
-		public Blend BlendFuncDestination;
+		public Blend BlendFuncSource = Blend.SourceAlpha;
+		public Blend BlendFuncDestination = Blend.InverseSourceAlpha;
 
 		/// <summary>
 		/// sourcePosition is read in but internally it is not used. The ParticleEmitter.localPosition is what the emitter will use for positioning
@@ -34,7 +34,7 @@ namespace Nez.Particles
 		public Color StartColor = Color.White, StartColorVariance = Color.Transparent;
 		public Color FinishColor = Color.White, FinishColorVariance = Color.Transparent;
 		public uint MaxParticles;
-		public float StartParticleSize, StartParticleSizeVariance;
+		public float StartParticleSize = 16, StartParticleSizeVariance;
 		public float FinishParticleSize, FinishParticleSizeVariance;
 		public float Duration;
 		public ParticleEmitterType EmitterType;

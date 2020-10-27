@@ -48,6 +48,16 @@ namespace Nez
 			return new Vector2(Mathf.Round(vec.X), Mathf.Round(vec.Y));
 		}
 
+		/// <summary>
+		/// rounds the x and y values to ints.
+		/// </summary>
+		/// <param name="vec">Vec.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Vector2 RoundToInt(this Vector2 vec)
+		{
+			return new Vector2(Mathf.RoundToInt(vec.X), Mathf.RoundToInt(vec.Y));
+		}
+
 
 		/// <summary>
 		/// rounds the x and y values in place
